@@ -1,40 +1,33 @@
 import { Layout, Menu, Card, Row, Col } from 'antd'
-import {
-  HeartOutlined,
-  CalendarOutlined,
-  DollarOutlined,
-  WarningOutlined,
-  AppstoreOutlined,
-  UserOutlined,
-  MedicineBoxOutlined,
-  ScheduleOutlined,
-  MoonFilled,
-} from '@ant-design/icons'
+import { HeartOutlined, CalendarOutlined, TransactionOutlined, GithubOutlined , AppstoreOutlined, UserOutlined,
+MedicineBoxOutlined, ScheduleOutlined, MoonFilled, } from '@ant-design/icons'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import Page from './page.jsx'
 import Owners from './Owners.jsx'
+import Footer from './app/components/Footer.jsx'
+import HomeNewsSection from './app/components/HomeNewsSection.jsx'
 
 const { Sider, Content } = Layout
 
 const menuItems = [
-  { key: '/', icon: <AppstoreOutlined />, label: 'Dashboard' },
-  { key: '/animals', icon: <HeartOutlined />, label: 'Animals' },
-  { key: '/owners', icon: <UserOutlined />, label: 'Owners' },
-  { key: '/visits', icon: <MedicineBoxOutlined />, label: 'Visits' },
-  { key: '/schedule', icon: <ScheduleOutlined />, label: 'Schedule' },
+  { key: '/', icon: <AppstoreOutlined />, label: 'Нүүр' },
+  { key: '/animals', icon: <HeartOutlined />, label: 'Амьтад' },
+  { key: '/owners', icon: <UserOutlined />, label: 'Эзэн' },
+  { key: '/visits', icon: <MedicineBoxOutlined />, label: 'Зочлох' },
+  { key: '/schedule', icon: <ScheduleOutlined />, label: 'Цаг товлох' },
 ]
 
 const stats = [
   {
-    title: 'Total Animals',
-    value: '4',
+    title: 'Нийт амьтан',
+    value: '0',
     icon: <HeartOutlined />,
     iconColor: '#ff4d8d',
     softBg: '#fff0f6',
     lineColor: '#ff4d8d',
   },
   {
-    title: 'Today’s Appointments',
+    title: 'Цаг авсан үйлчлүүлэгч',
     value: '0',
     icon: <CalendarOutlined />,
     iconColor: '#4c84ff',
@@ -42,17 +35,17 @@ const stats = [
     lineColor: '#4c84ff',
   },
   {
-    title: 'Monthly Revenue',
+    title: 'Цугласан хандив',
     value: '0 MNT',
-    icon: <DollarOutlined />,
+    icon: <TransactionOutlined />,
     iconColor: '#19be6b',
     softBg: '#eefcf5',
     lineColor: '#19be6b',
   },
   {
-    title: 'Low Stock Items',
-    value: '1',
-    icon: <WarningOutlined />,
+    title: 'Олдсон амьтад',
+    value: '0',
+    icon: <GithubOutlined />,
     iconColor: '#f59e0b',
     softBg: '#fff8e8',
     lineColor: '#f59e0b',
@@ -187,7 +180,7 @@ function DashboardHome() {
             color: '#334155',
           }}
         >
-          PetClinic+
+          PetMedical+
         </div>
 
         <div
@@ -201,7 +194,7 @@ function DashboardHome() {
             color: '#475569',
           }}
         >
-          Monday, June 30, 2025
+          Monday, April 6, 2026
         </div>
       </div>
 
@@ -236,7 +229,7 @@ function DashboardHome() {
                 color: 'white',
               }}
             >
-              Welcome to PetClinic+
+              Welcome to PetMedical+
             </h1>
 
             <p
@@ -247,7 +240,7 @@ function DashboardHome() {
                 color: 'rgba(255,255,255,0.88)',
               }}
             >
-              Monday, June 30th, 2025
+              Monday, April 6, 2026
             </p>
           </div>
 
@@ -270,6 +263,8 @@ function DashboardHome() {
           </Col>
         ))}
       </Row>
+
+      <HomeNewsSection/>
     </>
   )
 }
@@ -330,7 +325,8 @@ function App() {
       </Sider>
 
       <Layout style={{ background: '#f3f4f6' }}>
-        <Content style={{ padding: 24 }}>
+        <Content style={{ padding: 24, display: 'flex', flexDirection: 'column' }}>
+          <div style={{ flex: 1}}>
           <Routes>
             <Route path="/" element={<DashboardHome />} />
             <Route path="/animals" element={<Page />} />
@@ -338,6 +334,9 @@ function App() {
             <Route path="/visits" element={<div>Visits Page</div>} />
             <Route path="/schedule" element={<div>Schedule Page</div>} />
           </Routes>
+        </div>
+
+        <Footer/>
         </Content>
       </Layout>
     </Layout>
